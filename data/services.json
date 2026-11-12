@@ -1,0 +1,162 @@
+[
+  {
+    "id": "landing",
+    "name": "إنشاء صفحة هبوط",
+    "category": "web",
+    "level": 0,
+    "description": "صفحة تعريفية لمشروع أو خدمة",
+    "deliverable": "صفحة منشورة متوافقة مع الهاتف",
+    "tools": [
+      {
+        "name": "Carrd",
+        "url": "https://carrd.co"
+      },
+      {
+        "name": "Framer",
+        "url": "https://framer.com"
+      }
+    ]
+  },
+  {
+    "id": "forms",
+    "name": "إنشاء نموذج طلبات",
+    "category": "automation",
+    "level": 0,
+    "description": "نموذج إلكتروني لاستقبال الطلبات",
+    "deliverable": "نموذج يعمل ورابط مشاركة وسجل ردود",
+    "tools": [
+      {
+        "name": "Tally",
+        "url": "https://tally.so"
+      },
+      {
+        "name": "Airtable",
+        "url": "https://airtable.com"
+      }
+    ]
+  },
+  {
+    "id": "booking",
+    "name": "إعداد نظام حجز مواعيد",
+    "category": "automation",
+    "level": 0,
+    "description": "إعداد رابط حجز ومواعيد عمل",
+    "deliverable": "صفحة حجز جاهزة ورسائل تأكيد",
+    "tools": [
+      {
+        "name": "Calendly",
+        "url": "https://calendly.com"
+      },
+      {
+        "name": "Cal.com",
+        "url": "https://cal.com"
+      }
+    ]
+  },
+  {
+    "id": "newsletter",
+    "name": "إعداد نشرة بريدية",
+    "category": "content",
+    "level": 0,
+    "description": "تجهيز نشرة بريدية وقالب إرسال",
+    "deliverable": "قالب نشرة وقائمة إعدادات",
+    "tools": [
+      {
+        "name": "beehiiv",
+        "url": "https://www.beehiiv.com"
+      }
+    ]
+  },
+  {
+    "id": "design",
+    "name": "تصميم واجهة موقع",
+    "category": "design",
+    "level": 1,
+    "description": "تصميم واجهة رقمية قابلة للتطوير",
+    "deliverable": "ملف تصميم قابل للمشاركة",
+    "tools": [
+      {
+        "name": "Figma",
+        "url": "https://figma.com"
+      }
+    ]
+  },
+  {
+    "id": "automation",
+    "name": "أتمتة استقبال الطلبات",
+    "category": "automation",
+    "level": 1,
+    "description": "ربط النموذج بجدول وتنبيهات",
+    "deliverable": "تدفق آلي مختبر",
+    "tools": [
+      {
+        "name": "Make",
+        "url": "https://make.com"
+      },
+      {
+        "name": "n8n",
+        "url": "https://n8n.io"
+      }
+    ]
+  },
+  {
+    "id": "dashboard",
+    "name": "إنشاء لوحة مؤشرات",
+    "category": "data",
+    "level": 1,
+    "description": "عرض مؤشرات أعمال من بيانات منظمة",
+    "deliverable": "لوحة مؤشرات قابلة للتحديث",
+    "tools": [
+      {
+        "name": "Metabase",
+        "url": "https://metabase.com"
+      }
+    ]
+  },
+  {
+    "id": "portal",
+    "name": "إنشاء بوابة عملاء",
+    "category": "web",
+    "level": 2,
+    "description": "بوابة تعرض بيانات للعملاء المصرح لهم",
+    "deliverable": "بوابة بصلاحيات دخول مختبرة",
+    "tools": [
+      {
+        "name": "Softr",
+        "url": "https://softr.io"
+      },
+      {
+        "name": "Airtable",
+        "url": "https://airtable.com"
+      }
+    ]
+  },
+  {
+    "id": "app",
+    "name": "إنشاء تطبيق أعمال بسيط",
+    "category": "web",
+    "level": 1,
+    "description": "تطبيق لعرض سجلات وإدارة عمليات",
+    "deliverable": "تطبيق قابل للاستخدام والاختبار",
+    "tools": [
+      {
+        "name": "Glide",
+        "url": "https://glideapps.com"
+      }
+    ]
+  },
+  {
+    "id": "video",
+    "name": "تحرير مقاطع قصيرة",
+    "category": "content",
+    "level": 1,
+    "description": "تحرير فيديو وتسليم نسخة للنشر",
+    "deliverable": "ملف فيديو نهائي",
+    "tools": [
+      {
+        "name": "Descript",
+        "url": "https://descript.com"
+      }
+    ]
+  }
+]
