@@ -3,5 +3,8 @@ main = "src/worker.js"
 compatibility_date = "2026-11-01"
 workers_dev = true
 
-# GITHUB_TOKEN must be set in Cloudflare Worker Settings > Variables and Secrets.
-# Never commit access tokens. This Worker deploys API code only, not static site assets.
+[secrets]
+required = ["GITHUB_TOKEN"]
+
+# GITHUB_TOKEN is configured as a secret on the Cloudflare Worker, not in GitHub.
+# Deploy must fail if the required secret is unavailable.
