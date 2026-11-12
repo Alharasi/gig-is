@@ -1,0 +1,7 @@
+name = "gig-is-search"
+main = "src/worker.js"
+compatibility_date = "2026-11-01"
+workers_dev = true
+
+# GITHUB_TOKEN must be set in Cloudflare Worker Settings > Variables and Secrets.
+# Never commit access tokens. This Worker deploys API code only, not static site assets.
