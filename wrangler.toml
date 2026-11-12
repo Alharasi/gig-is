@@ -3,8 +3,5 @@ main = "src/worker.js"
 compatibility_date = "2026-11-01"
 workers_dev = true
 
-[secrets]
-required = ["GITHUB_TOKEN"]
-
-# GITHUB_TOKEN is configured as a secret on the Cloudflare Worker, not in GitHub.
-# Deploy must fail if the required secret is unavailable.
+# GITHUB_TOKEN must be configured as a Cloudflare Worker Secret in Production.
+# Do not commit credentials to this repository.
