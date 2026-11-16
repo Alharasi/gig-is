@@ -38,7 +38,11 @@ try {
     if (strlen($html)<10000 || strlen($html)>500000 || !str_contains($html,'<html lang="ar"') || !str_contains($html,'</html>')) throw new RuntimeException('Invalid page structure');
     if (!preg_match('/<meta name="gig-release" content="([a-zA-Z0-9_.-]+)">/',$html,$m)) throw new RuntimeException('Missing release');
     $release=$m[1];
-    if (!preg_match('/var ideas = (\[.*?\]);\s*var currentIndex/s',$html,$m)) throw new RuntimeException('Missing ideas');
+    if (!preg_match('/<script src="\/(gig-app-[A-Za-z0-9_.-]+\.js)" defer><\/script>/', $html, $assetMatch)) throw new RuntimeException('Missing local script');
+    $assetName=$assetMatch[1];
+    $javascript=request(dirname($source).'/'.$assetName.'?check='.time());
+    if (strlen($javascript)<5000 || strlen($javascript)>250000) throw new RuntimeException('Invalid script size');
+    if (!preg_match('/var ideas = (\[.*?\]);\s*var currentIndex/s',$javascript,$m)) throw new RuntimeException('Missing ideas');
     $ideas=json_decode($m[1],true,512,JSON_THROW_ON_ERROR);
     if (!is_array($ideas) || count($ideas)<1 || count($ideas)>5) throw new RuntimeException('Invalid idea count');
     $ids=[];
@@ -47,6 +51,14 @@ try {
         if (!isset($idea['steps']) || !is_array($idea['steps']) || count($idea['steps'])<1) throw new RuntimeException('Missing steps');
         if (isset($ids[(string)$idea['id']])) throw new RuntimeException('Duplicate idea');
         $ids[(string)$idea['id']]=true;
+    }
+    $assetTarget=dirname($target).'/'.$assetName;
+    $assetHash=hash('sha256',$javascript);
+    if (!is_file($assetTarget) || hash_file('sha256',$assetTarget)!==$assetHash) {
+        $assetTemp=$assetTarget.'.next';
+        if(file_put_contents($assetTemp,$javascript)===false) throw new RuntimeException('Cannot write script');
+        chmod($assetTemp,0644);
+        if(!rename($assetTemp,$assetTarget)) throw new RuntimeException('Cannot publish script');
     }
     $hash=hash('sha256',$html);
     $old=is_file($statusFile)?json_decode(file_get_contents($statusFile),true):[];
@@ -71,7 +83,7 @@ try {
     if (!rename($tmp,$target)) throw new RuntimeException('Cannot replace page');
     $verified=false;
     for($i=0;$i<3;$i++) {
-        try { if (hash('sha256',request('https://gig.is/?gig_verify='.time().'-'.$i))===$hash) { $verified=true; break; } } catch(Throwable $e) {}
+        try { if (hash('sha256',request('https://gig.is/?gig_verify='.time().'-'.$i))===$hash && hash('sha256',request('https://gig.is/'.$assetName.'?gig_verify='.time().'-'.$i))===$assetHash) { $verified=true; break; } } catch(Throwable $e) {}
         if ($i<2) sleep(2);
     }
     if (!$verified) {
