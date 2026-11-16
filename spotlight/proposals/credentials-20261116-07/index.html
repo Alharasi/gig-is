@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="gig-release" content="20261116-credentials-07">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Gig.is | أفكار خدمات مستقلة</title>
+  <meta name="theme-color" content="#2563eb">
+  <meta name="description" content="أفكار منتقاة لخدمات مستقلة، مع المخرج المباع والتجربة المدفوعة وخطوات التنفيذ.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTYiIGZpbGw9IiMyNTYzZWIiLz48cGF0aCBkPSJNNDQgMjJhMTcgMTcgMCAxIDAgMyAyMlYzM0gzMyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSI3IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48Y2lyY2xlIGN4PSI0OSIgY3k9IjE1IiByPSI1IiBmaWxsPSIjOTNjNWZkIi8+PC9zdmc+">
+  <link href="/gig-fonts.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --primary: #2563eb;
+      --primary-light: #eff6ff;
+      --accent: #059669;
+      --accent-light: #ecfdf5;
+      --shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      padding-bottom: 90px;
+      overflow-x: hidden;
+    }
+
+    .en, .num {
+      font-family: 'Montserrat', sans-serif;
+      direction: ltr;
+      display: inline-block;
+    }
+
+    /* Brand Header */
+    .brand-area {
+      text-align: center;
+      margin-bottom: 20px;
+      width: 100%;
+      max-width: 680px;
+    }
+
+    .brand-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text-main);
+      direction: ltr;
+      display: inline-block;
+    }
+
+    .brand-logo span {
+      color: var(--primary);
+    }
+
+    .brand-sub {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    /* Spotlight Card */
+    .card-wrapper {
+      width: 100%;
+      max-width: 680px;
+      position: relative;
+    }
+
+    .spotlight-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .progress-track {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 3px;
+      background: #f1f5f9;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--primary);
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .idea-badge {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 99px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .bookmark-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .bookmark-btn:active {
+      transform: scale(0.94);
+    }
+
+    .bookmark-btn.saved {
+      background: var(--primary-light);
+      border-color: #bfdbfe;
+      color: var(--primary);
+    }
+
+    .idea-title {
+      font-size: 23px;
+      font-weight: 800;
+      line-height: 1.4;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+
+    .idea-desc {
+      font-size: 15.5px;
+      line-height: 1.75;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    /* Card Bottom Inline Row */
+    .card-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 18px;
+      border-top: 1px solid #f1f5f9;
+      flex-wrap: wrap;
+    }
+
+    .tags-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .meta-pill {
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 10px;
+      background: #f8fafc;
+      color: #475569;
+      border: 1px solid #e2e8f0;
+    }
+
+    .meta-pill.profit {
+      background: var(--accent-light);
+      color: var(--accent);
+      border-color: #a7f3d0;
+    }
+
+    .plan-btn {
+      background: var(--text-main);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 10px 18px;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+
+    .plan-btn:hover {
+      background: #1e293b;
+    }
+
+    .plan-btn:active {
+      transform: scale(0.97);
+    }
+
+    /* Pagination Dots / Numbers */
+    .dots-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .dot-btn {
+      background: transparent;
+      border: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #94a3b8;
+      padding: 6px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s;
+    }
+
+    .dot-btn.active {
+      color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    /* Compact Floating Bottom Dock (No Large Empty Gaps) */
+    .bottom-dock {
+      position: fixed;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.1);
+      border-radius: 99px;
+      padding: 6px 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      z-index: 40;
+      width: auto;
+      max-width: calc(100vw - 24px);
+    }
+
+    .dock-item {
+      background: transparent;
+      border: none;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #334155;
+      padding: 8px 14px;
+      border-radius: 99px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+
+    .dock-item:hover, .dock-item:active {
+      background: #f1f5f9;
+    }
+
+    .fav-count {
+      background: var(--primary);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      min-width: 20px;
+      height: 20px;
+      border-radius: 99px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 5px;
+    }
+
+    .dock-arrows {
+      display: inline-flex;
+      align-items: center;
+      background: #f1f5f9;
+      padding: 3px;
+      border-radius: 99px;
+      gap: 2px;
+    }
+
+    .arrow-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: none;
+      background: #fff;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      transition: transform 0.15s;
+    }
+
+    .arrow-btn:active {
+      transform: scale(0.9);
+    }
+
+    /* Modals / Bottom Sheets */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      z-index: 100;
+      padding: 0;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    @media (min-width: 640px) {
+      .modal-backdrop {
+        align-items: center;
+        padding: 20px;
+      }
+    }
+
+    .sheet-box {
+      background: #fff;
+      width: 100%;
+      max-width: 620px;
+      max-height: 88dvh;
+      border-radius: 24px 24px 0 0;
+      padding: 24px;
+      overflow-y: auto;
+      box-shadow: 0 -10px 40px rgba(0,0,0,0.12);
+      animation: slideUp 0.25s ease-out;
+    }
+
+    @media (min-width: 640px) {
+      .sheet-box {
+        border-radius: 24px;
+        box-shadow: 0 25px 50px -12px rgba(0,0,0,0.2);
+      }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .sheet-handle {
+      width: 40px;
+      height: 4px;
+      background: #cbd5e1;
+      border-radius: 99px;
+      margin: 0 auto 16px;
+    }
+
+    @media (min-width: 640px) {
+      .sheet-handle { display: none; }
+    }
+
+    .sheet-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .sheet-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.4;
+    }
+
+    .close-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      color: var(--text-muted);
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .plan-section {
+      margin-bottom: 16px;
+      background: #f8fafc;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid #f1f5f9;
+    }
+
+    .plan-section h4 {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .plan-section p, .plan-section li {
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: #334155;
+    }
+
+    .plan-section ul {
+      padding-right: 18px;
+    }
+
+    .sheet-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .copy-btn {
+      flex: 1;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 12px;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 14.5px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .saved-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 10px;
+      gap: 10px;
+    }
+
+    .saved-item-title {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text-main);
+    }
+
+    .small-btn {
+      background: var(--primary-light);
+      color: var(--primary);
+      border: none;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-family: 'Tajawal', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 480px) {
+      .spotlight-card { padding: 20px; border-radius: 20px; }
+      .idea-title { font-size: 19.5px; }
+      .idea-desc { font-size: 14.5px; margin-bottom: 18px; }
+      .plan-btn { width: 100%; justify-content: center; margin-top: 4px; }
+      .dock-item { padding: 7px 11px; font-size: 13px; }
+    }
+  
+    @media (max-width: 640px) {
+      html {
+        width: 100%; height: 100%; overflow: hidden;
+        overscroll-behavior: none;
+      }
+      body {
+        position: fixed; inset: 0;
+        width: 100%; height: 100vh; height: 100dvh; min-height: 0;
+        overflow: hidden; overscroll-behavior: none;
+        padding: max(12px, env(safe-area-inset-top)) 16px
+          calc(84px + env(safe-area-inset-bottom));
+      }
+      .brand-area { flex: 0 0 auto; margin-bottom: 16px; }
+      .brand-logo { font-size: 26px; }
+      .brand-sub { font-size: 13px; line-height: 1.5; }
+      .card-wrapper { min-height: 0; flex: 0 1 auto; }
+      .spotlight-card { padding: 20px; }
+      .idea-title { font-size: 20px; line-height: 1.4; }
+      .idea-desc { font-size: 14.5px; line-height: 1.65; margin-bottom: 18px; }
+      .card-bottom { gap: 10px; padding-top: 14px; }
+      .plan-btn { width: 100%; justify-content: center; margin-top: 2px; }
+      .dots-bar { margin-top: 12px; }
+      .bottom-dock { bottom: calc(12px + env(safe-area-inset-bottom)); }
+      .modal-backdrop { overflow: hidden; overscroll-behavior: none; }
+      .sheet-box {
+        max-height: 88vh; max-height: 88dvh;
+        overflow-x: hidden; overflow-y: auto;
+        overscroll-behavior-y: contain;
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-y;
+        padding-bottom: calc(24px + env(safe-area-inset-bottom));
+      }
+    }
+    @media (max-width: 640px) and (max-height: 680px) {
+      body { padding-top: 10px; padding-bottom: calc(72px + env(safe-area-inset-bottom)); }
+      .brand-area { margin-bottom: 10px; }
+      .brand-logo { font-size: 23px; }
+      .brand-sub { font-size: 12px; margin-top: 2px; }
+      .spotlight-card { padding: 16px; }
+      .card-top { margin-bottom: 10px; }
+      .bookmark-btn { width: 34px; height: 34px; }
+      .idea-title { font-size: 18px; line-height: 1.35; margin-bottom: 8px; }
+      .idea-desc { font-size: 14px; line-height: 1.5; margin-bottom: 12px; }
+      .card-bottom { padding-top: 10px; gap: 8px; }
+      .meta-pill { font-size: 11.5px; padding: 5px 8px; }
+      .plan-btn { padding: 9px 14px; }
+      .dots-bar { margin-top: 8px; }
+    }
+    @media (max-width: 640px) and (max-height: 560px) {
+      .brand-sub { display: none; }
+      .brand-area { margin-bottom: 8px; }
+      .spotlight-card { padding: 12px 16px; }
+      .idea-title { font-size: 16px; }
+      .idea-desc {
+        font-size: 13px; line-height: 1.4;
+        display: -webkit-box; -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3; overflow: hidden;
+      }
+      .card-top { margin-bottom: 8px; }
+      .card-bottom { padding-top: 8px; gap: 6px; }
+      .plan-btn { padding: 7px 12px; }
+      .dot-btn { padding: 4px 10px; }
+    }
+
+    #aboutModal .profile-name { font-weight: 700; font-size: 17px; margin-bottom: 3px; }
+    #aboutModal .profile-country { margin-bottom: 3px; }
+    .credentials-section { padding: 5px 0 0; border-top: 1px solid var(--border); }
+    .credentials-section h3 { font-size: 15px; font-weight: 700; color: var(--primary); margin: 16px 0 12px; }
+    .credential-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; max-width: 380px; margin: 0 auto; }
+    .credential-btn { font-family: 'Montserrat',sans-serif; font-size: 13px; font-weight: 600; color: var(--text-main); background: #fff; border: 1px solid #d5dce7; border-radius: 9px; min-height: 39px; padding: 9px 13px; cursor: help; touch-action: manipulation; transition: background .15s, border-color .15s; }
+    .credential-btn[aria-expanded="true"] { background: var(--primary-light); border-color: #93b6ff; color: var(--primary); }
+    .credential-btn:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+    .credential-tooltip { position: fixed; z-index: 160; width: 300px; max-width: calc(100vw - 32px); padding: 12px 14px; border: 1px solid #dce2ea; border-radius: 12px; background: #fff; box-shadow: 0 7px 24px rgba(15,23,42,.14); text-align: center; color: var(--text-main); }
+    .credential-tooltip[hidden] { display: none !important; }
+    .credential-tooltip::after { content: ''; position: absolute; width: 12px; height: 12px; background: #fff; bottom: -7px; left: var(--tip-arrow,50%); border-right: 1px solid #dce2ea; border-bottom: 1px solid #dce2ea; transform: translateX(-50%) rotate(45deg); }
+    .credential-tooltip.below::after { bottom: auto; top: -7px; transform: translateX(-50%) rotate(225deg); }
+    .credential-english { display: block; font-family: 'Montserrat',sans-serif; font-weight: 500; font-size: 12px; line-height: 1.65; overflow-wrap: anywhere; }
+    .credential-arabic { display: block; font-family: 'Tajawal',sans-serif; font-size: 14px; line-height: 1.6; margin-top: 4px; }
+    @media (max-width: 360px) { .credential-list { gap: 7px; } .credential-btn { font-size: 11.5px; padding: 9px 10px; } }
+    @media (min-width: 640px) {
+      #aboutModal .sheet-box { max-width: 480px; padding: 22px; border-radius: 20px; max-height: calc(100dvh - 48px); scrollbar-width: thin; }
+      #aboutModal .sheet-header { margin-bottom: 14px; padding-bottom: 12px; align-items: center; }
+      #aboutModal .sheet-title { font-size: 20px; }
+      #aboutModal .plan-section { margin-bottom: 12px; padding: 12px 14px; border-radius: 12px; }
+      #aboutModal .plan-section p { font-size: 14px; line-height: 1.65; }
+      #aboutModal .credentials-section h3 { margin: 13px 0 12px; font-size: 14px; }
+      #aboutModal .credential-btn { min-height: 38px; font-size: 12px; padding: 8px 7px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="brand-area">
+    <div class="brand-logo" dir="ltr">Gig<span>.is</span></div>
+    <p class="brand-sub">أفكار لخدمات مستقلة، مع خطوات البداية</p>
+  </header>
+
+  <main class="card-wrapper">
+    <article class="spotlight-card" id="spotlightCard">
+
+      
+      <div class="card-top">
+        <span class="idea-badge" id="ideaBadge">الفكرة <span class="num">01 / 03</span></span>
+        <button type="button" class="bookmark-btn" id="bookmarkBtn" aria-label="حفظ الفكرة">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+        </button>
+      </div>
+
+      <h1 class="idea-title" id="ideaTitle">إصلاح الأتمتة المتعطلة ومنع تكرار الرسائل</h1>
+      <p class="idea-desc" id="ideaDesc">خدمة لأصحاب الأعمال الذين يستخدمون n8n أو Make ويواجهون رسائل مكررة أو طلبات لا تصل أو مسارات تتوقف؛ تبدأ بتشخيص مسار واحد ثم إصلاحه واختباره.</p>
+
+      <div class="card-bottom">
+        <div class="tags-group" id="ideaTags">
+          <span class="meta-pill">المهارة: أتمتة وربط</span>
+          <span class="meta-pill profit">المقابل: تشخيص + إصلاح</span>
+        </div>
+        <button type="button" class="plan-btn" id="openPlanBtn">
+          <span>خطة التنفيذ</span>
+          <span class="en">←</span>
+        </button>
+      </div>
+    </article>
+
+    <div class="dots-bar" id="dotsBar">
+      <button type="button" class="dot-btn active" data-index="0">01</button>
+      <button type="button" class="dot-btn" data-index="1">02</button>
+      <button type="button" class="dot-btn" data-index="2">03</button>
+    </div>
+  </main>
+
+  <!-- Compact Floating Dock -->
+  <nav class="bottom-dock" aria-label="التنقل السريع">
+    <button type="button" class="dock-item" id="openFavBtn">
+      <span>المفضلة</span>
+      <span class="fav-count" id="favCount">0</span>
+    </button>
+
+    <div class="dock-arrows">
+      <button type="button" class="arrow-btn" id="prevBtn" aria-label="الفكرة السابقة">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+      <button type="button" class="arrow-btn" id="nextBtn" aria-label="الفكرة التالية">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+    </div>
+
+    <button type="button" class="dock-item" id="openAboutBtn">
+      <span>حول الموقع</span>
+    </button>
+  </nav>
+
+  <!-- Plan Modal -->
+  <div class="modal-backdrop" id="planModal">
+    <div class="sheet-box">
+      <div class="sheet-handle"></div>
+      <div class="sheet-header">
+        <h2 class="sheet-title" id="modalTitle">خطة التنفيذ</h2>
+        <button type="button" class="close-btn" id="closePlanBtn">×</button>
+      </div>
+      <div id="modalBody"></div>
+      <div class="sheet-actions">
+        <button type="button" class="copy-btn" id="copyPlanBtn">نسخ خطة التنفيذ</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Favorites Modal -->
+  <div class="modal-backdrop" id="favModal">
+    <div class="sheet-box">
+      <div class="sheet-handle"></div>
+      <div class="sheet-header">
+        <h2 class="sheet-title">الأفكار المحفوظة</h2>
+        <button type="button" class="close-btn" id="closeFavBtn">×</button>
+      </div>
+      <div id="favList"></div>
+    </div>
+  </div>
+
+  <!-- About Modal -->
+  <div class="modal-backdrop" id="aboutModal">
+    <div class="sheet-box">
+      <div class="sheet-handle"></div>
+      <div class="sheet-header">
+        <h2 class="sheet-title">حول <span class="en">Gig.is</span></h2>
+        <button type="button" class="close-btn" id="closeAboutBtn">×</button>
+      </div>
+      <div class="plan-section">
+        <h4>فكرة المساحة</h4>
+        <p>مساحة شخصية لعرض أفكار منتقاة للمشاريع والخدمات الرقمية، عبر مسارات مستمدة من إدارة المشاريع وتحليل الأعمال.</p>
+      </div>
+      <div class="plan-section">
+        <h4>إعداد وتطوير</h4>
+        <p class="profile-name">إبراهيم الحراصي</p><p class="profile-country">سلطنة عمان</p><p>إدارة المشاريع وتحليل الأعمال</p>
+      </div>
+      <section class="credentials-section" aria-labelledby="credentialsHeading">
+        <h3 id="credentialsHeading">الشهادات المهنية</h3>
+        <div class="credential-list" dir="ltr">
+          <button type="button" class="credential-btn" data-credential="CAPM" aria-expanded="false" aria-describedby="credentialTip"><bdi>CAPM</bdi></button>
+          <button type="button" class="credential-btn" data-credential="PMP" aria-expanded="false" aria-describedby="credentialTip"><bdi>PMP</bdi></button>
+          <button type="button" class="credential-btn" data-credential="PMI-PBA" aria-expanded="false" aria-describedby="credentialTip"><bdi>PMI-PBA</bdi></button>
+          <button type="button" class="credential-btn" data-credential="PMI-RMP" aria-expanded="false" aria-describedby="credentialTip"><bdi>PMI-RMP</bdi></button>
+          <button type="button" class="credential-btn" data-credential="PMI-PMOCP" aria-expanded="false" aria-describedby="credentialTip"><bdi>PMI-PMOCP</bdi></button>
+          <button type="button" class="credential-btn" data-credential="ACCA FBT" aria-expanded="false" aria-describedby="credentialTip"><bdi>ACCA FBT</bdi></button>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <div id="credentialTip" class="credential-tooltip" role="tooltip" hidden><span class="credential-english" dir="ltr"></span><span class="credential-arabic" dir="rtl"></span></div>
+
+  <script src="/gig-app-20261116-credentials-07.js" defer></script>
+</body>
+</html>
