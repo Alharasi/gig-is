@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="gig-release" content="20261116-analysis-01">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Gig.is | أفكار خدمات مستقلة</title>
+  <meta name="theme-color" content="#2563eb">
+  <meta name="description" content="أفكار منتقاة لخدمات مستقلة، مع المخرج المباع والتجربة المدفوعة وخطوات التنفيذ.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTYiIGZpbGw9IiMyNTYzZWIiLz48cGF0aCBkPSJNNDQgMjJhMTcgMTcgMCAxIDAgMyAyMlYzM0gzMyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSI3IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48Y2lyY2xlIGN4PSI0OSIgY3k9IjE1IiByPSI1IiBmaWxsPSIjOTNjNWZkIi8+PC9zdmc+">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --primary: #2563eb;
+      --primary-light: #eff6ff;
+      --accent: #059669;
+      --accent-light: #ecfdf5;
+      --shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      padding-bottom: 90px;
+      overflow-x: hidden;
+    }
+
+    .en, .num {
+      font-family: 'Montserrat', sans-serif;
+      direction: ltr;
+      display: inline-block;
+    }
+
+    /* Brand Header */
+    .brand-area {
+      text-align: center;
+      margin-bottom: 20px;
+      width: 100%;
+      max-width: 680px;
+    }
+
+    .brand-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text-main);
+      direction: ltr;
+      display: inline-block;
+    }
+
+    .brand-logo span {
+      color: var(--primary);
+    }
+
+    .brand-sub {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    /* Spotlight Card */
+    .card-wrapper {
+      width: 100%;
+      max-width: 680px;
+      position: relative;
+    }
+
+    .spotlight-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .progress-track {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 3px;
+      background: #f1f5f9;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--primary);
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .idea-badge {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 99px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .bookmark-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .bookmark-btn:active {
+      transform: scale(0.94);
+    }
+
+    .bookmark-btn.saved {
+      background: var(--primary-light);
+      border-color: #bfdbfe;
+      color: var(--primary);
+    }
+
+    .idea-title {
+      font-size: 23px;
+      font-weight: 800;
+      line-height: 1.4;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+
+    .idea-desc {
+      font-size: 15.5px;
+      line-height: 1.75;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    /* Card Bottom Inline Row */
+    .card-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 18px;
+      border-top: 1px solid #f1f5f9;
+      flex-wrap: wrap;
+    }
+
+    .tags-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .meta-pill {
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 10px;
+      background: #f8fafc;
+      color: #475569;
+      border: 1px solid #e2e8f0;
+    }
+
+    .meta-pill.profit {
+      background: var(--accent-light);
+      color: var(--accent);
+      border-color: #a7f3d0;
+    }
+
+    .plan-btn {
+      background: var(--text-main);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 10px 18px;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+
+    .plan-btn:hover {
+      background: #1e293b;
+    }
+
+    .plan-btn:active {
+      transform: scale(0.97);
+    }
+
+    /* Pagination Dots / Numbers */
+    .dots-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .dot-btn {
+      background: transparent;
+      border: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #94a3b8;
+      padding: 6px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s;
+    }
+
+    .dot-btn.active {
+      color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    /* Compact Floating Bottom Dock (No Large Empty Gaps) */
+    .bottom-dock {
+      position: fixed;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.1);
+      border-radius: 99px;
+      padding: 6px 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      z-index: 40;
+      width: auto;
+      max-width: calc(100vw - 24px);
+    }
+
+    .dock-item {
+      background: transparent;
+      border: none;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #334155;
+      padding: 8px 14px;
+      border-radius: 99px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+
+    .dock-item:hover, .dock-item:active {
+      background: #f1f5f9;
+    }
+
+    .fav-count {
+      background: var(--primary);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      min-width: 20px;
+      height: 20px;
+      border-radius: 99px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 5px;
+    }
+
+    .dock-arrows {
+      display: inline-flex;
+      align-items: center;
+      background: #f1f5f9;
+      padding: 3px;
+      border-radius: 99px;
+      gap: 2px;
+    }
+
+    .arrow-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: none;
+      background: #fff;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      transition: transform 0.15s;
+    }
+
+    .arrow-btn:active {
+      transform: scale(0.9);
+    }
+
+    /* Modals / Bottom Sheets */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      z-index: 100;
+      padding: 0;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    @media (min-width: 640px) {
+      .modal-backdrop {
+        align-items: center;
+        padding: 20px;
+      }
+    }
+
+    .sheet-box {
+      background: #fff;
+      width: 100%;
+      max-width: 620px;
+      max-height: 88dvh;
+      border-radius: 24px 24px 0 0;
+      padding: 24px;
+      overflow-y: auto;
+      box-shadow: 0 -10px 40px rgba(0,0,0,0.12);
+      animation: slideUp 0.25s ease-out;
+    }
+
+    @media (min-width: 640px) {
+      .sheet-box {
+        border-radius: 24px;
+        box-shadow: 0 25px 50px -12px rgba(0,0,0,0.2);
+      }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .sheet-handle {
+      width: 40px;
+      height: 4px;
+      background: #cbd5e1;
+      border-radius: 99px;
+      margin: 0 auto 16px;
+    }
+
+    @media (min-width: 640px) {
+      .sheet-handle { display: none; }
+    }
+
+    .sheet-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .sheet-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.4;
+    }
+
+    .close-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      color: var(--text-muted);
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .plan-section {
+      margin-bottom: 16px;
+      background: #f8fafc;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid #f1f5f9;
+    }
+
+    .plan-section h4 {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .plan-section p, .plan-section li {
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: #334155;
+    }
+
+    .plan-section ul {
+      padding-right: 18px;
+    }
+
+    .sheet-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .copy-btn {
+      flex: 1;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 12px;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 14.5px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .saved-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 10px;
+      gap: 10px;
+    }
+
+    .saved-item-title {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text-main);
+    }
+
+    .small-btn {
+      background: var(--primary-light);
+      color: var(--primary);
+      border: none;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-family: 'Tajawal', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 480px) {
+      .spotlight-card { padding: 20px; border-radius: 20px; }
+      .idea-title { font-size: 19.5px; }
+      .idea-desc { font-size: 14.5px; margin-bottom: 18px; }
+      .plan-btn { width: 100%; justify-content: center; margin-top: 4px; }
+      .dock-item { padding: 7px 11px; font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="brand-area">
+    <div class="brand-logo" dir="ltr"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTYiIGZpbGw9IiMyNTYzZWIiLz48cGF0aCBkPSJNNDQgMjJhMTcgMTcgMCAxIDAgMyAyMlYzM0gzMyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSI3IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48Y2lyY2xlIGN4PSI0OSIgY3k9IjE1IiByPSI1IiBmaWxsPSIjOTNjNWZkIi8+PC9zdmc+" width="30" height="30" alt="" style="vertical-align:middle;margin-right:9px;border-radius:8px">Gig<span>.is</span></div>
+    <p class="brand-sub">أفكار لخدمات مستقلة، مع خطوات البداية</p>
+  </header>
+
+  <main class="card-wrapper">
+    <article class="spotlight-card" id="spotlightCard">
+
+      
+      <div class="card-top">
+        <span class="idea-badge" id="ideaBadge">الفكرة <span class="num">01 / 03</span></span>
+        <button type="button" class="bookmark-btn" id="bookmarkBtn" aria-label="حفظ الفكرة">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+        </button>
+      </div>
+
+      <h1 class="idea-title" id="ideaTitle">إصلاح الأتمتة المتعطلة ومنع تكرار الرسائل</h1>
+      <p class="idea-desc" id="ideaDesc">خدمة لأصحاب الأعمال الذين يستخدمون n8n أو Make ويواجهون رسائل مكررة أو طلبات لا تصل أو مسارات تتوقف؛ تبدأ بتشخيص مسار واحد ثم إصلاحه واختباره.</p>
+
+      <div class="card-bottom">
+        <div class="tags-group" id="ideaTags">
+          <span class="meta-pill">المهارة: أتمتة وربط</span>
+          <span class="meta-pill profit">المقابل: تشخيص + إصلاح</span>
+        </div>
+        <button type="button" class="plan-btn" id="openPlanBtn">
+          <span>خطة التنفيذ</span>
+          <span class="en">←</span>
+        </button>
+      </div>
+    </article>
+
+    <div class="dots-bar" id="dotsBar">
+      <button type="button" class="dot-btn active" data-index="0">01</button>
+      <button type="button" class="dot-btn" data-index="1">02</button>
+      <button type="button" class="dot-btn" data-index="2">03</button>
+    </div>
+  </main>
+
+  <!-- Compact Floating Dock -->
+  <nav class="bottom-dock" aria-label="التنقل السريع">
+    <button type="button" class="dock-item" id="openFavBtn">
+      <span>المفضلة</span>
+      <span class="fav-count" id="favCount">0</span>
+    </button>
+
+    <div class="dock-arrows">
+      <button type="button" class="arrow-btn" id="prevBtn" aria-label="الفكرة السابقة">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+      <button type="button" class="arrow-btn" id="nextBtn" aria-label="الفكرة التالية">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+    </div>
+
+    <button type="button" class="dock-item" id="openAboutBtn">
+      <span>حول الموقع</span>
+    </button>
+  </nav>
+
+  <!-- Plan Modal -->
+  <div class="modal-backdrop" id="planModal">
+    <div class="sheet-box">
+      <div class="sheet-handle"></div>
+      <div class="sheet-header">
+        <h2 class="sheet-title" id="modalTitle">خطة التنفيذ</h2>
+        <button type="button" class="close-btn" id="closePlanBtn">×</button>
+      </div>
+      <div id="modalBody"></div>
+      <div class="sheet-actions">
+        <button type="button" class="copy-btn" id="copyPlanBtn">نسخ خطة التنفيذ</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Favorites Modal -->
+  <div class="modal-backdrop" id="favModal">
+    <div class="sheet-box">
+      <div class="sheet-handle"></div>
+      <div class="sheet-header">
+        <h2 class="sheet-title">الأفكار المحفوظة</h2>
+        <button type="button" class="close-btn" id="closeFavBtn">×</button>
+      </div>
+      <div id="favList"></div>
+    </div>
+  </div>
+
+  <!-- About Modal -->
+  <div class="modal-backdrop" id="aboutModal">
+    <div class="sheet-box">
+      <div class="sheet-handle"></div>
+      <div class="sheet-header">
+        <h2 class="sheet-title">حول <span class="en">Gig.is</span></h2>
+        <button type="button" class="close-btn" id="closeAboutBtn">×</button>
+      </div>
+      <div class="plan-section">
+        <h4>فكرة المنصة</h4>
+        <p>مساحة شخصية لعرض أفكار المشاريع والخدمات الرقمية الحديثة بصورة مركزة وواضحة، بعيدا عن التشتت، مع خطة تنفيذ عملية لكل فكرة.</p>
+      </div>
+      <div class="plan-section">
+        <h4>إعداد وتطوير</h4>
+        <p><strong>إبراهيم الحراصي</strong> · سلطنة عمان<br>إدارة المشاريع وتحليل الأعمال (<span class="en">PMP · CAPM · RMP · PBA · PMOCP · ACCA FBT</span>)</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var ideas = [
+  {
+    "id": 101,
+    "num": "01",
+    "title": "إصلاح الأتمتة المتعطلة ومنع تكرار الرسائل",
+    "desc": "خدمة لأصحاب الأعمال الذين يستخدمون n8n أو Make ويواجهون رسائل مكررة أو طلبات لا تصل أو مسارات تتوقف؛ تبدأ بتشخيص مسار واحد ثم إصلاحه واختباره.",
+    "competition": "المهارة: أتمتة وربط",
+    "profit": "المقابل: تشخيص + إصلاح",
+    "whyNow": "تستهدف الخدمة أنشطة تعتمد على مسارات آلية قائمة، حيث يؤدي تعطل الربط أو تكرار الرسائل إلى إعادة العمل يدويا وإرباك العميل. أظهرت طلبات العمل التي راجعناها حاجة إلى تشخيص هذه الأعطال وإصلاحها. وتتمثل الفرصة في تقديم تدخل محدود يمكن قياس نتيجته، بدلا من البدء بإعادة بناء النظام بالكامل. يعتمد نجاح الخدمة على تحديد السبب الجذري، وضبط نطاق الإصلاح، واختبار حالات الفشل، مع احتساب وقت التشخيص قبل تسعير التنفيذ. وجود منافسين يجعل التخصص في مسار عمل أو قطاع محدد ضروريا، ولم يثبت الطلب المحلي أو هامش الربح بعد.",
+    "steps": [
+      "توثيق العطل والمسار المتأثر وحفظ نسخة من الإعدادات قبل التعديل.",
+      "فحص السجلات والربط ومنطق التكرار، ثم إصلاح سبب محدد ضمن نطاق معتمد.",
+      "اختبار الحالات العادية والفشل وإعادة المحاولة، وتسليم سجل التغييرات وتنبيه للأخطاء."
+    ],
+    "clients": "أنشطة الحجز والخدمات التي تربط المواعيد وبيانات العملاء والإشعارات عبر n8n أو Make.",
+    "firstTen": "ابدأ بأنشطة لديها أتمتة قائمة أو بطلبات إصلاح منشورة؛ اعرض تشخيص مسار واحد بمخرج واضح، ثم سعرا منفصلا للإصلاح.",
+    "tools": "n8n / Make • Execution Logs • Webhooks / APIs",
+    "deliverable": "مسار واحد تم تشخيصه وإصلاح الأعطال المتفق عليها فيه، مع نتائج الاختبار وشرح الإعدادات وآلية رصد الفشل.",
+    "pilot": "تشخيص عطل قابل لإعادة الإنتاج في مسار واحد مقابل مبلغ ثابت؛ يعتمد العميل نطاق الإصلاح بعد التقرير.",
+    "obstacle": "قد يكون السبب في خدمة خارجية أو صلاحيات أو تصميم النظام؛ يلزم تحديد حدود الإصلاح وعدم الوعد بمنع كل الأعطال."
+  },
+  {
+    "id": 102,
+    "num": "02",
+    "title": "إصلاح أخطاء بيانات المنتجات في Merchant Center",
+    "desc": "خدمة لمتاجر Shopify التي تتأثر منتجاتها باختلاف الأسعار أو العملات أو الشحن أو بيانات الأصناف؛ تشخص السبب وتعالج البيانات والإعدادات القابلة للتصحيح.",
+    "competition": "المهارة: بيانات المتاجر",
+    "profit": "المقابل: تدقيق + معالجة",
+    "whyNow": "تعالج الخدمة فجوة بين بيانات المتجر وما تستقبله منصة Merchant Center؛ فقد تؤثر اختلافات العملات والأسعار والشحن على أهلية ظهور المنتجات. تدعم الفرصة طلبات عمل محددة لمعالجة هذه الأخطاء، إلى جانب متطلبات بيانات منشورة من Google. القيمة في تشخيص مصدر الاختلاف وإصلاحه من الأصل، بدلا من تعديل الأصناف يدويا دون معالجة سبب التكرار. يبدأ النطاق بنوع خطأ واحد وسوق محدد، وتقاس النتيجة بانخفاض الأخطاء بعد إعادة الفحص. يجب فصل العيوب التقنية عن مخالفات السياسات، واحتساب الاعتماد على مراجعة المنصة وعدم ضمان القبول أو المبيعات.",
+    "steps": [
+      "حصر الأخطاء ومصدر بيانات المنتجات والأسواق المتأثرة باستخدام صلاحية قراءة أولا.",
+      "مقارنة بيانات المتجر والمصدر وMerchant Center، ثم اعتماد قائمة التصحيحات مع العميل.",
+      "تطبيق التصحيحات المعتمدة وإعادة الفحص وتسليم تقرير بالمعالج والمتبقي وما يحتاج قرارا من المنصة."
+    ],
+    "clients": "متاجر Shopify التي لديها Merchant Center قائم وأخطاء بيانات محددة تؤثر على منتجاتها في أسواق تدعمها المنصة.",
+    "firstTen": "استهدف طلبات إصلاح قائمة أو تعاون مع مختص إعلانات يحتاج معالجة بيانات منتجات؛ قدم تدقيقا محدودا بدلا من وعد بزيادة المبيعات.",
+    "tools": "Google Merchant Center • Shopify • Google Sheets",
+    "deliverable": "قائمة أسباب الأخطاء، وتصحيح فئة متفق عليها من مشكلات البيانات أو المزامنة، مع مقارنة قبل المعالجة وبعدها.",
+    "pilot": "تدقيق نوع خطأ واحد على عينة منتجات، وتسليم خطة إصلاح بمقابل ثابت قبل توسيع النطاق.",
+    "obstacle": "أخطاء البيانات تختلف عن مخالفات السياسات؛ بعض المنتجات غير مؤهلة أصلا. لا تضمن الخدمة قبول المنتجات أو إعادة الحساب أو زيادة المبيعات."
+  },
+  {
+    "id": 103,
+    "num": "03",
+    "title": "مقارنة عروض توريد المواد الكهربائية للمقاولين",
+    "desc": "خدمة تحول عروض الموردين للمقاولين الصغار إلى مقارنة قابلة للمراجعة، توحد البنود والمواصفات والكميات وشروط التوريد، وتظهر الاختلافات التي تعطل قرار الشراء.",
+    "competition": "المهارة: مشتريات وتحليل",
+    "profit": "المقابل: باقة مقارنة",
+    "whyNow": "تستهدف الخدمة مقاولين يتلقون عروض توريد مختلفة في الوحدات والمواصفات وشروط التسليم؛ وهي اختلافات قد تجعل أقل سعر ظاهر غير قابل للمقارنة. أظهرت طلبات العمل حاجة إلى مقارنة عروض الموردين وأتمتة إعدادها، لكنها لا تثبت بمفردها حجم الطلب على قطاع المواد الكهربائية في السوق المحلي. زاوية التميز المقترحة هي توحيد البنود وربطها بالمواصفات المرجعية وإظهار البنود غير المتكافئة، مع إبقاء الاعتماد الفني لدى العميل. يختبر العرض بمقارنة صغيرة مدفوعة، وتقاس جدواه بوقت المعالجة وحجم المراجعة المطلوبة واستعداد العميل لتكرار الشراء.",
+    "steps": [
+      "الاتفاق على قائمة البنود والمواصفات والموردين والعملة ونطاق المقارنة.",
+      "استخراج البيانات وربط كل بند بمرجعه ومراجعة الوحدات والكميات والمواصفات يدويا.",
+      "تسليم مقارنة للأسعار والشروط والنواقص والاستفسارات، دون استبدال الاعتماد الفني لدى العميل."
+    ],
+    "clients": "مقاولون صغار يتلقون عدة عروض لتوريد مواد كهربائية لمشروع محدد ولا يملكون محلل مشتريات متفرغا.",
+    "firstTen": "تواصل مع مسؤولي مشتريات في قطاع المقاولات عبر علاقات مهنية مباشرة؛ اعرض عينة ببيانات تجريبية ثم تجربة مدفوعة على طلب شراء واحد.",
+    "tools": "Excel / Google Sheets • PDF Extraction • OCR",
+    "deliverable": "جدول مقارنة حتى ثلاثة عروض و20 بندا، مع فروق المواصفات وشروط الدفع والتوريد وقائمة البنود التي تحتاج توضيحا.",
+    "pilot": "مقارنة ثلاثة عروض لخمسة بنود بعد استلام المواصفات المرجعية؛ يعتمد العميل شكل الجدول قبل استكمال الطلب.",
+    "obstacle": "اختلاف الماركات والمواصفات قد يجعل الأسعار غير قابلة للمقارنة؛ تحتاج البنود الفنية إلى اعتماد مختص، ولم يثبت الطلب المحلي على هذا التخصص بعد."
+  }
+];
+
+      var currentIndex = 0;
+      var savedIds = [];
+      var progress = 0;
+      var intervalTime = 7000;
+      var tickMs = 100;
+      var isPaused = false;
+
+      try {
+        var stored = localStorage.getItem('gig_saved_ideas');
+        if (stored) { var parsed = JSON.parse(stored); if (Array.isArray(parsed)) savedIds = parsed.filter(function(id) { return ideas.some(function(item) { return item.id === id; }); }); }
+      } catch (e) {
+        savedIds = [];
+      }
+
+      function saveToStorage() {
+        try {
+          localStorage.setItem('gig_saved_ideas', JSON.stringify(savedIds));
+        } catch (e) {}
+      }
+
+      function renderIdea(index) {
+        currentIndex = (index + ideas.length) % ideas.length;
+        var item = ideas[currentIndex];
+        progress = 0;
+
+        document.getElementById('ideaBadge').innerHTML = 'الفكرة <span class="num">' + item.num + ' / 0' + ideas.length + '</span>';
+        document.getElementById('ideaTitle').textContent = item.title;
+        document.getElementById('ideaDesc').textContent = item.desc;
+        document.getElementById('ideaTags').innerHTML =
+          '<span class="meta-pill">' + item.competition + '</span>' +
+          '<span class="meta-pill profit">' + item.profit + '</span>';
+
+        var isSaved = savedIds.indexOf(item.id) !== -1;
+        var bmBtn = document.getElementById('bookmarkBtn');
+        if (isSaved) {
+          bmBtn.classList.add('saved');
+          bmBtn.querySelector('svg').setAttribute('fill', 'currentColor');
+        } else {
+          bmBtn.classList.remove('saved');
+          bmBtn.querySelector('svg').setAttribute('fill', 'none');
+        }
+
+        var dots = document.querySelectorAll('.dot-btn');
+        for (var i = 0; i < dots.length; i++) {
+          if (i === currentIndex) dots[i].classList.add('active');
+          else dots[i].classList.remove('active');
+        }
+
+        document.getElementById('favCount').textContent = savedIds.length;
+      }
+
+      function toggleBookmark() {
+        var id = ideas[currentIndex].id;
+        var idx = savedIds.indexOf(id);
+        if (idx === -1) savedIds.push(id);
+        else savedIds.splice(idx, 1);
+        saveToStorage();
+        renderIdea(currentIndex);
+      }
+
+      function openPlanModal() {
+        isPaused = true;
+        var item = ideas[currentIndex];
+        document.getElementById('modalTitle').textContent = item.title;
+
+        var stepsHtml = '';
+        for (var i = 0; i < item.steps.length; i++) {
+          stepsHtml += '<li>' + item.steps[i] + '</li>';
+        }
+
+        document.getElementById('modalBody').innerHTML =
+          '<div class="plan-section"><h4>تحليل الفرصة</h4><p>' + item.whyNow + '</p></div>' +
+          '<div class="plan-section"><h4>ما الذي تبيعه؟</h4><p>' + item.deliverable + '</p></div>' +
+          '<div class="plan-section"><h4>أصغر تجربة مدفوعة</h4><p>' + item.pilot + '</p></div>' +
+          '<div class="plan-section"><h4>أبرز عائق</h4><p>' + item.obstacle + '</p></div>' +
+          '<div class="plan-section"><h4>خطوات البدء العملية</h4><ul>' + stepsHtml + '</ul></div>' +
+          '<div class="plan-section"><h4>العملاء المستهدفون</h4><p>' + item.clients + '</p></div>' +
+          '<div class="plan-section"><h4>أين تبدأ البحث عن العملاء؟</h4><p>' + item.firstTen + '</p></div>' +
+          '<div class="plan-section"><h4>الأدوات المقترحة</h4><p class="en" style="font-size:13.5px;font-weight:600;color:#0f172a;">' + item.tools + '</p></div>';
+
+        var copyBtn = document.getElementById('copyPlanBtn');
+        copyBtn.textContent = 'نسخ خطة التنفيذ';
+        document.getElementById('planModal').classList.add('open');
+      }
+
+      function openFavModal() {
+        isPaused = true;
+        var container = document.getElementById('favList');
+        if (savedIds.length === 0) {
+          container.innerHTML = '<p style="text-align:center;color:#64748b;padding:24px 0;">لم تقم بحفظ أي فكرة بعد. اضغط على أيقونة الحفظ أعلى البطاقة لإضافتها هنا.</p>';
+        } else {
+          var html = '';
+          for (var i = 0; i < ideas.length; i++) {
+            if (savedIds.indexOf(ideas[i].id) !== -1) {
+              html += '<div class="saved-item">' +
+                '<span class="saved-item-title">' + ideas[i].num + '. ' + ideas[i].title + '</span>' +
+                '<button type="button" class="small-btn" data-jump="' + i + '">عرض</button>' +
+              '</div>';
+            }
+          }
+          container.innerHTML = html;
+          var jumpBtns = container.querySelectorAll('[data-jump]');
+          for (var j = 0; j < jumpBtns.length; j++) {
+            jumpBtns[j].addEventListener('click', function() {
+              var targetIdx = parseInt(this.getAttribute('data-jump'), 10);
+              closeAllModals();
+              renderIdea(targetIdx);
+            });
+          }
+        }
+        document.getElementById('favModal').classList.add('open');
+      }
+
+      function closeAllModals() {
+        document.getElementById('planModal').classList.remove('open');
+        document.getElementById('favModal').classList.remove('open');
+        document.getElementById('aboutModal').classList.remove('open');
+        isPaused = false;
+      }
+
+      // Bind Events Safely
+      document.getElementById('bookmarkBtn').addEventListener('click', toggleBookmark);
+      document.getElementById('openPlanBtn').addEventListener('click', openPlanModal);
+      document.getElementById('prevBtn').addEventListener('click', function() { renderIdea(currentIndex - 1); });
+      document.getElementById('nextBtn').addEventListener('click', function() { renderIdea(currentIndex + 1); });
+
+      var dotBtns = document.querySelectorAll('.dot-btn');
+      for (var d = 0; d < dotBtns.length; d++) {
+        dotBtns[d].addEventListener('click', function() {
+          renderIdea(parseInt(this.getAttribute('data-index'), 10));
+        });
+      }
+
+      document.getElementById('openFavBtn').addEventListener('click', openFavModal);
+      document.getElementById('openAboutBtn').addEventListener('click', function() {
+        isPaused = true;
+        document.getElementById('aboutModal').classList.add('open');
+      });
+
+      document.getElementById('closePlanBtn').addEventListener('click', closeAllModals);
+      document.getElementById('closeFavBtn').addEventListener('click', closeAllModals);
+      document.getElementById('closeAboutBtn').addEventListener('click', closeAllModals);
+
+      var backdrops = document.querySelectorAll('.modal-backdrop');
+      for (var b = 0; b < backdrops.length; b++) {
+        backdrops[b].addEventListener('click', function(e) {
+          if (e.target === this) closeAllModals();
+        });
+      }
+
+      document.getElementById('copyPlanBtn').addEventListener('click', function() {
+        var item = ideas[currentIndex];
+        var text = item.title + "\n\n" + item.desc + "\n\nتحليل الفرصة\n" + item.whyNow + "\n\nما الذي تبيعه؟\n" + item.deliverable + "\n\nأصغر تجربة مدفوعة\n" + item.pilot + "\n\nأبرز عائق\n" + item.obstacle + "\n\nخطوات البدء:\n- " + item.steps.join("\n- ") + "\n\nالعملاء المستهدفون: " + item.clients + "\n\nالوصول إلى العملاء: " + item.firstTen + "\n\nالأدوات: " + item.tools;
+        var btn = this;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function() {
+            btn.textContent = 'تم نسخ الخطة ✓';
+          }).catch(function() { btn.textContent = 'تعذر النسخ، حاول مجددا'; });
+        } else {
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          btn.textContent = 'تم نسخ الخطة ✓';
+        }
+      });
+
+      // Touch Swipe Support (RTL: Swipe Right -> Next, Swipe Left -> Prev)
+      var touchStartX = 0;
+      var cardEl = document.getElementById('spotlightCard');
+      cardEl.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      cardEl.addEventListener('touchend', function(e) {
+        var diff = e.changedTouches[0].screenX - touchStartX;
+        if (Math.abs(diff) > 45) {
+          if (diff > 0) renderIdea(currentIndex + 1);
+          else renderIdea(currentIndex - 1);
+        }
+      }, { passive: true });
+
+      document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeAllModals(); });
+      renderIdea(0);
+    })();
+  </script>
+</body>
+</html>
