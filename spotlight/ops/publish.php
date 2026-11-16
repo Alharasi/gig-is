@@ -7,6 +7,12 @@ $root = __DIR__;
 $target = '/home/adigekrz/public_html/index.html';
 $statusFile = '/home/adigekrz/public_html/gig-update-status.json';
 $source = 'https://raw.githubusercontent.com/Alharasi/gig-is/main/spotlight/index.html';
+$activeSourceFile=$root.'/active-source.json';
+$activeSource=is_file($activeSourceFile)?json_decode(file_get_contents($activeSourceFile),true):[];
+if (!empty($activeSource['source_url'])) {
+    if (!preg_match('~^https://raw\\.githubusercontent\\.com/Alharasi/gig-is/[a-f0-9]{40}/spotlight/proposals/[a-zA-Z0-9_-]{1,24}/index\\.html$~',$activeSource['source_url'])) throw new RuntimeException('Invalid approved source');
+    $source=$activeSource['source_url'];
+}
 $lock = fopen($root . '/publish.lock', 'c');
 if (!$lock || !flock($lock, LOCK_EX | LOCK_NB)) exit;
 function request(string $url, ?array $post = null): string {
@@ -57,6 +63,7 @@ try {
     $cfgPath=$root.'/telegram.json';
     $cfg=is_file($cfgPath)?json_decode(file_get_contents($cfgPath),true):[];
     $htmlHash=hash('sha256',$html); $jsHash=hash('sha256',$javascript);
+    if (!empty($activeSource['source_url']) && (($activeSource['html_sha256']??'')!==$htmlHash || ($activeSource['js_sha256']??'')!==$jsHash || ($activeSource['release']??'')!==$release)) throw new RuntimeException('Approved source hash mismatch');
     $baseHash=is_file($target)?hash_file('sha256',$target):'';
     $jsPath=dirname($target).'/'.$assetName;
     $changed=$baseHash!==$htmlHash || !is_file($jsPath) || hash_file('sha256',$jsPath)!==$jsHash;
@@ -86,7 +93,7 @@ try {
     if (is_file($target) && hash_file('sha256',$target)===$hash) {
         $data=is_array($old)?$old:[];
         $data=array_merge($data,['status'=>'current','release'=>$release,'sha256'=>$hash,'idea_count'=>count($ideas),'checked_at'=>gmdate('c')]);
-        if (empty($data['telegram_sent_at'])) {
+        if (empty($data['telegram_sent_at']) && !empty($data['published_at']) && strtotime($data['published_at'])>=strtotime($cfg['linked_at']??'1970-01-01')) {
             try { if (notify("تم تحديث Gig\nالنسخة: $release\nعدد الأفكار: ".count($ideas)."\nhttps://gig.is/")) { $data['telegram_sent_at']=gmdate('c'); $data['telegram_status']='sent'; } else $data['telegram_status']='not_configured'; }
             catch(Throwable $e) { $data['telegram_status']='failed'; }
         }
