@@ -52,6 +52,27 @@ try {
         if (isset($ids[(string)$idea['id']])) throw new RuntimeException('Duplicate idea');
         $ids[(string)$idea['id']]=true;
     }
+
+    // Fail closed on changed content until the exact bundle is approved by the linked owner.
+    $cfgPath=$root.'/telegram.json';
+    $cfg=is_file($cfgPath)?json_decode(file_get_contents($cfgPath),true):[];
+    $htmlHash=hash('sha256',$html); $jsHash=hash('sha256',$javascript);
+    $baseHash=is_file($target)?hash_file('sha256',$target):'';
+    $jsPath=dirname($target).'/'.$assetName;
+    $changed=$baseHash!==$htmlHash || !is_file($jsPath) || hash_file('sha256',$jsPath)!==$jsHash;
+    if (!empty($cfg['approval_required']) && $changed) {
+        $apPath=$root.'/approved.json';
+        $ap=is_file($apPath)?json_decode(file_get_contents($apPath),true):[];
+        $ok=is_array($ap) && !empty($cfg['owner_user_id']) && !empty($cfg['chat_id'])
+            && ($ap['status']??'')==='approved' && !empty($ap['proposal_id'])
+            && ($ap['release']??'')===$release
+            && hash_equals($htmlHash,(string)($ap['html_sha256']??''))
+            && hash_equals($jsHash,(string)($ap['js_sha256']??''))
+            && hash_equals($baseHash,(string)($ap['base_sha256']??''))
+            && (string)($ap['user_id']??'')===(string)$cfg['owner_user_id']
+            && (string)($ap['chat_id']??'')===(string)$cfg['chat_id'];
+        if (!$ok) { echo "AWAITING OWNER APPROVAL; LIVE SITE UNCHANGED\n"; exit; }
+    }
     $assetTarget=dirname($target).'/'.$assetName;
     $assetHash=hash('sha256',$javascript);
     if (!is_file($assetTarget) || hash_file('sha256',$assetTarget)!==$assetHash) {
